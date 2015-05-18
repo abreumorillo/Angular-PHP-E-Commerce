@@ -1,0 +1,60 @@
+<Section class="row">
+	<header>
+		<h3>Shoes on Sale</h3>
+	</header>
+    <article data-ng-repeat="product in vm.productOnSale">
+       <!-- <div class="row"> -->
+            <div class="col-sm-12 col-md-6">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a href="#">
+                        <img class="media-object" data-ng-src="{{product.imageUrl}}" width="107" height="150">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{product.name}} <small class="help-block" data-ng-if="product.quantity<=0">Not Available</small></h4>
+                    <p><span>Description: </span> <span data-ng-bind="product.description"></span></p>
+                    <p>
+                        <span><strong>Sale Price:</strong> </span> <span data-ng-bind="product.salePrice"></span> |
+                        <span>Regular Price: </span> <span data-ng-bind="product.price"></span> |
+                        <span>Quantity Left: </span> <span data-ng-bind="product.quantity"></span>
+                    </p>
+                    <p><button class="btn btn-primary btn-xs" data-ng-click="vm.addToCart(product)" data-ng-disabled="product.quantity<=0"><i class="fa fa-plus"></i>&nbsp;Add to Cart</button></p>
+                </div>
+            </div>
+            </div>
+    </article>
+  </Section>
+<hr/>
+<section class="row">
+    <header>
+        <h3>Shoes Catalog</h3>
+    </header>
+    <article data-ng-repeat="product in vm.productCatalog">
+        <!-- <div class="row"> -->
+        <div class="col-sm-12 col-md-6">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a href="#">
+                        <img class="media-object" data-ng-src="{{product.imageUrl}}" width="107" height="150">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{product.name}} <small class="help-block" data-ng-if="product.quantity<=0">Not Available</small></h4>
+                    <p><span>Description: </span> <span data-ng-bind="product.description"></span></p>
+                    <p>
+                        <span>Regular Price: </span> <span data-ng-bind="product.price"></span> |
+                        <span>Quantity Left: </span> <span data-ng-bind="product.quantity"></span>
+                    </p>
+                    <p><button class="btn btn-primary btn-xs" data-ng-click="vm.addToCart(product)" data-ng-disabled="product.quantity<=0"><i class="fa fa-plus"></i>&nbsp;Add to Cart</button></p>
+                </div>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <div class="col-sm-12">
+            <div data-pagination="" data-total-items="vm.totalItems" data-ng-change="vm.pageChanged()" data-ng-model="vm.currentPage"
+                 data-items-per-page="vm.itemPerPage" class="pagination-sm" boundary-links="true"></div>
+        </div>
+    </div>
+</section>

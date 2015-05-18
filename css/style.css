@@ -1,0 +1,355 @@
+/* 
+    Created on : Feb 28, 2015, 5:49:24 PM
+    Author     : Neris Sandino Abreu
+*/
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    /* background-color: #f5f5f5;*/
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: #444;
+}
+textarea {
+    resize: none;
+}
+
+/*hide placeholder text on focus*/
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+textarea:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+/* Error messages */
+.error-messages.ng-active {
+    background: #bb1616;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 15px;
+    position: relative;
+}
+.error-messages.ng-active:after {
+    position: absolute;
+    top: -10px;
+    content: "";
+    left: 20px;
+    border-style: solid;
+    border-color: transparent transparent #bb1616;
+    border-width: 5px;
+}
+
+/*Custom animation for angular ngAnimate */
+/**
+    Animaciones para angular
+*/
+/* Animations */
+.slide-animation-container {
+  position: relative;
+}
+.slide-animation.ng-enter,
+.slide-animation.ng-leave {
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  position: relative;
+  /*top: 0;
+    left: 0;
+    right: 0;*/
+  height: 1000px;
+}
+.slide-animation.ng-enter {
+  z-index: 100;
+  left: 100px;
+  opacity: 0;
+}
+.slide-animation.ng-enter.ng-enter-active {
+  left: 0;
+  opacity: 1;
+}
+.slide-animation.ng-leave {
+  z-index: 101;
+  opacity: 1;
+  left: 0;
+}
+.slide-animation.ng-leave.ng-leave-active {
+  left: -100px;
+  opacity: 0;
+}
+.show-hide-animation.ng-hide-add,
+.show-hide-animation.ng-hide-remove {
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+  transition: all linear 0.3s;
+  display: block!important;
+  height: 1000px;
+}
+.show-hide-animation.ng-hide-remove {
+  opacity: 0;
+}
+.show-hide-animation.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+}
+.show-hide-animation.ng-hide-add {
+  opacity: 1;
+}
+.show-hide-animation.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+}
+.repeat-animation.ng-enter,
+.repeat-animation.ng-leave,
+.repeat-animation.ng-move {
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  position: relative;
+}
+.repeat-animation.ng-enter {
+  left: 10px;
+  opacity: 0;
+}
+.repeat-animation.ng-enter.ng-enter-active {
+  left: 0;
+  opacity: 1;
+}
+.repeat-animation.ng-leave {
+  left: 10px;
+  opacity: 1;
+}
+.repeat-animation.ng-leave.ng-leave-active {
+  left: -10px;
+  opacity: 0;
+}
+.repeat-animation.ng-move {
+  opacity: 0.5;
+}
+.repeat-animation.ng-move.ng-move-active {
+  opacity: 1;
+}
+
+/* Error messages */
+.error-messages.ng-active {
+  background: #bb1616;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 15px;
+  position: relative;
+}
+.error-messages.ng-active:after {
+  position: absolute;
+  top: -10px;
+  content: "";
+  left: 20px;
+  border-style: solid;
+  border-color: transparent transparent #bb1616;
+  border-width: 5px;
+}
+
+
+
+/* BASE STYLES
+============================================================================= */
+
+.page        { 
+  bottom:0; 
+  top:0;  
+  width:100%;
+}
+
+/* PAGES
+============================================================================= */
+/*.page-home    { background:#00D0BC; color:#00907c; }
+.page-about   { background:#E59400; color:#a55400; }
+.page-contact   { background:#ffa6bb; color:#9e0000; }
+
+/* ANIMATIONS
+============================================================================= */
+
+.page.ng-leave  { z-index:9999; }
+.page.ng-enter  { z-index:8888; }
+
+/* page specific animations ------------------------ */
+
+/* home -------------------------- */
+.page-home.ng-leave         {
+    -webkit-transform-origin: 0% 0%;
+  -webkit-animation: rotateFall 1s both ease-in;
+  -moz-transform-origin: 0% 0%;
+  -moz-animation: rotateFall 1s both ease-in;
+  transform-origin: 0% 0%;
+  animation: rotateFall 1s both ease-in;
+}
+.page-home.ng-enter     {  
+    -webkit-animation:scaleUp 0.5s both ease-in;
+  -moz-animation:scaleUp 0.5s both ease-in;
+  animation:scaleUp 0.5s both ease-in;    
+}
+
+/* about ------------------------ */
+.page-about.ng-leave        {
+    -webkit-animation:slideOutLeft 0.5s both ease-in;
+  -moz-animation:slideOutLeft 0.5s both ease-in;
+  animation:slideOutLeft 0.5s both ease-in;   
+}
+.page-about.ng-enter    {  
+    -webkit-animation:slideInRight 0.5s both ease-in;
+  -moz-animation:slideInRight 0.5s both ease-in;
+  animation:slideInRight 0.5s both ease-in;    
+}
+
+/* contact ---------------------- */
+.page-contact.ng-leave      {
+    -webkit-transform-origin: 50% 50%;
+  -webkit-animation: rotateOutNewspaper .5s both ease-in;
+  -moz-transform-origin: 50% 50%;
+  -moz-animation: rotateOutNewspaper .5s both ease-in;
+  transform-origin: 50% 50%;
+  animation: rotateOutNewspaper .5s both ease-in;
+}
+.page-contact.ng-enter    { 
+    -webkit-animation:slideInUp 0.5s both ease-in;
+  -moz-animation:slideInUp 0.5s both ease-in;
+  animation:slideInUp 0.5s both ease-in;  
+}
+
+/* rotate and fall */
+@-webkit-keyframes rotateFall {
+  0% { -webkit-transform: rotateZ(0deg); }
+  20% { -webkit-transform: rotateZ(10deg); -webkit-animation-timing-function: ease-out; }
+  40% { -webkit-transform: rotateZ(17deg); }
+  60% { -webkit-transform: rotateZ(16deg); }
+  100% { -webkit-transform: translateY(100%) rotateZ(17deg); }
+}
+@-moz-keyframes rotateFall {
+  0% { -moz-transform: rotateZ(0deg); }
+  20% { -moz-transform: rotateZ(10deg); -moz-animation-timing-function: ease-out; }
+  40% { -moz-transform: rotateZ(17deg); }
+  60% { -moz-transform: rotateZ(16deg); }
+  100% { -moz-transform: translateY(100%) rotateZ(17deg); }
+}
+@keyframes rotateFall {
+  0% { transform: rotateZ(0deg); }
+  20% { transform: rotateZ(10deg); animation-timing-function: ease-out; }
+  40% { transform: rotateZ(17deg); }
+  60% { transform: rotateZ(16deg); }
+  100% { transform: translateY(100%) rotateZ(17deg); }
+}
+
+/* scale up */
+@keyframes scaleUp {
+  from    { opacity: 0.3; transform: scale(0.8); }
+}
+@-moz-keyframes scaleUp {
+  from    { opacity: 0.3; -moz-transform: scale(0.8); }
+}
+@-webkit-keyframes scaleUp {
+  from    { opacity: 0.3; -webkit-transform: scale(0.8); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+  from  { transform:translateX(100%); }
+  to    { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+  from  { -moz-transform:translateX(100%); }
+  to    { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+  from  { -webkit-transform:translateX(100%); }
+  to    { -webkit-transform: translateX(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideInUp {
+  from  { transform:translateY(100%); }
+  to    { transform: translateY(0); }
+}
+@-moz-keyframes slideInUp {
+  from  { -moz-transform:translateY(100%); }
+  to    { -moz-transform: translateY(0); }
+}
+@-webkit-keyframes slideInUp {
+  from  { -webkit-transform:translateY(100%); }
+  to    { -webkit-transform: translateY(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideOutLeft {
+  to    { transform: translateX(-100%); }
+}
+@-moz-keyframes slideOutLeft {  
+  to    { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes slideOutLeft {
+  to    { -webkit-transform: translateX(-100%); }
+}
+
+/* rotate out newspaper */
+@-webkit-keyframes rotateOutNewspaper {
+  to { -webkit-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+@-moz-keyframes rotateOutNewspaper {
+  to { -moz-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+@keyframes rotateOutNewspaper {
+  to { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+}
+
+/* Media object format */
+.media {
+    margin: 5px 0;
+    border: 1px solid #EEEEEE;
+    border-radius: 7px;
+}
+.media-body h4 {
+    padding-top: 10px;
+}
+
+/*ng-cloak is used by angular to hide element until the two way binding is resolve*/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+/*This style file upload like bootstrap button*/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#loading-bar .bar{
+    background: #FF8922;
+}

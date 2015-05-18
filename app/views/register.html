@@ -1,0 +1,68 @@
+<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<div class="panel-title">Sign Up</div>
+			<div style="float:right; font-size: 85%; position: relative; top:-10px">
+				<a ui-sref="login">Sign In</a></div>
+		</div>  
+		<div class="panel-body" >
+			<form name="registerForm" class="form-horizontal" role="form" novalidate="">
+                <div ng-if="vm.errors.length > 0" class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Error(s)</strong>
+                            <ul>
+                                <li data-ng-repeat="error in vm.errors">{{error}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+				<div class="form-group">
+					<label for="email" class="col-md-3 control-label">Email</label>
+					<div class="col-md-9">
+						<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" data-ng-model="vm.user.userName" required=""
+                               data-ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+                        <!-- error message-->
+                        <div data-ng-messages="registerForm.email.$error" data-ng-if="registerForm.email.$invalid && loginForm.email.$dirty" class="error-messages animated zoomIn help-block">
+                            <span data-ng-message="required">The email is required.</span>
+                            <span data-ng-message="email">Enter a valid email.</span>
+                        </div>
+                        <!--/error message-->
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="firstname" class="col-md-3 control-label">First Name</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" data-ng-model="vm.user.firstName"
+                               data-ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="lastname" class="col-md-3 control-label">Last Name</label>
+					<div class="col-md-9">
+						<input type="text" id="lastname" class="form-control" name="lastname" placeholder="Last Name" data-ng-model="vm.user.lastName"
+                               data-ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-md-3 control-label">Password</label>
+					<div class="col-md-9">
+						<input type="password" id="password" class="form-control" name="password" placeholder="Password" data-ng-model="vm.user.password" required=""
+                               data-ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<!-- Button -->                                        
+					<div class="col-md-offset-3 col-md-9">
+                        <button class="btn btn-warning" type="reset" data-ng-click="vm.resetForm()"><i class="fa fa-refresh"></i>&nbsp;Reset</button>
+						<button  type="button" class="btn btn-info" data-ng-click="vm.register()" data-ng-disabled="registerForm.$invalid && registerForm.$dirty">
+							<i class="fa fa-check"></i> &nbsp; Sign Up</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div> 

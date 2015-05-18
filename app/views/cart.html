@@ -1,0 +1,38 @@
+<h1>Shopping Cart <small><span data-ng-bind="vm.cart.totalItem"></span> {{vm.cart.products.length > 1? "Items": "Item";}}</small></h1>
+<br/>
+<!-- This section is only visible if the cart has any product -->
+<section class="row" data-ng-if="vm.cart.products.length > 0">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-responsive">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="product in vm.cart.products">
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{(product.salePrice > 0 ? '$'+ product.salePrice : '$'+product.price); }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-right"><strong>Total</strong></td>
+                <td>{{vm.cart.totalItem}}</td>
+                <td>{{vm.cart.totalCost | currency}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="button" ng-click="vm.emptyCart()" class="btn btn-warning">Emtpy Cart</button>
+    </div>
+</section>
+<!-- This section is visible if cart is empty -->
+<section class="row" data-ng-if="vm.cart.products.length <= 0">
+    <div class="col-sm-12">
+        <h2 class="text-center">Your cart is empty. <a data-ui-sref="index">Click here</a> to add products.</h2>
+    </div>
+</section>
+

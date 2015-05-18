@@ -1,0 +1,130 @@
+<h2 class="page-header">Manage The store</h2>
+
+<section class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="control-label" for="productforupdate">Select a product to update</label>
+            <select class="form-control"  id="productforupdate" data-ng-model="vm.productToUpdate" ng-options="product as product.name for product in vm.products"
+                    data-ng-change="vm.selectProductToUpdate()">
+                <option value="">Select a product</option>
+            </select>
+        </div>
+    </div>
+</section>
+
+<section ng-if="vm.errors.length > 0" class="row">
+    <div class="col-sm-6">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error(s)</strong>
+            <ul>
+                <li data-ng-repeat="error in vm.errors">{{error}}</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="row">
+    <div class="col-sm-6">
+        <fieldset data-ng-disabled="vm.isSaving">
+            <legend>Add New Product</legend>
+            <form class="form-horizontal" novalidate="" name="productForm">
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 col-md-2  control-label" for="name">Name</label>
+                    <div class="col-sm-9 col-md-10">
+                        <input type="text" class="form-control" id="name" name="name" required="" data-ng-model="vm.product.name"
+                               ng-model-options="{ updateOn: 'blur' }" minlength="4" maxlength="50"/>
+                        <!-- error message-->
+                        <div data-ng-messages="productForm.name.$error" data-ng-if="vm.isInvalid(productForm.name)" class="error-messages animated zoomIn help-block">
+                            <span data-ng-message="required">Product Name is Required.</span>
+                            <span data-ng-message="minlength">The minimum length is 4 characters.</span>
+                        </div>
+                        <!--/error message-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="col-sm-3 col-md-2 control-label">Description</label>
+                    <div class="col-sm-9 col-md-10">
+                       <textarea class="form-control" id="description" name="description" required="" data-ng-model="vm.product.description"
+                                 ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" minlength="15"></textarea>
+                        <!-- error message-->
+                        <div data-ng-messages="productForm.description.$error" data-ng-if="vm.isInvalid(productForm.description)" class="error-messages animated zoomIn help-block">
+                            <span data-ng-message="required">The description of the product is Required.</span>
+                            <span data-ng-message="minlength">The minimum length is 15 characters.</span>
+                        </div>
+                        <!--/error message-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 col-md-2 control-label" for="price">Price</label>
+                    <div class="col-sm-9 col-md-10">
+                        <input type="number" min="0" class="form-control" id="price" name="price" required="" data-ng-model="vm.product.price"
+                               ng-model-options="{ updateOn: 'blur' }"/>
+                        <!-- error message-->
+                        <div data-ng-messages="productForm.price.$error" data-ng-if="vm.isInvalid(productForm.price)" class="error-messages animated zoomIn help-block">
+                            <span data-ng-message="required">The price is Required.</span>
+                            <span data-ng-message="number">The price must be a number</span>
+                            <span data-ng-message="min">Only positive value.</span>
+                        </div>
+                        <!--/error message-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 col-md-2 control-label" for="saleprice">Sale Price</label>
+                    <div class="col-sm-9 col-md-10">
+                        <input type="number" min="0" class="form-control" id="saleprice" name="saleprice"  data-ng-model="vm.product.salePrice"
+                               ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"/>
+                        <!-- error message-->
+                        <div data-ng-messages="productForm.saleprice.$error" data-ng-if="vm.isInvalid(productForm.saleprice)" class="error-messages animated zoomIn help-block">
+                            <span data-ng-message="number">Sale price must be a number</span>
+                            <span data-ng-message="min">Only positive value.</span>
+                        </div>
+                        <!--/error message-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 col-md-2 control-label" for="quantity">Quantity</label>
+                    <div class="col-sm-9 col-md-10">
+                        <input type="number" min="0" class="form-control" id="quantity" name="quantity" required="" data-ng-model="vm.product.quantity"
+                               ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"/>
+                        <!-- error message-->
+                        <div data-ng-messages="productForm.quantity.$error" data-ng-if="vm.isInvalid(productForm.quantity)" class="error-messages animated zoomIn help-block">
+                            <span data-ng-message="required">The quantity is Required.</span>
+                            <span data-ng-message="number">Quantity must be a number</span>
+                            <span data-ng-message="min">Only positive value.</span>
+                        </div>
+                        <!--/error message-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3 col-md-2">Image</label>
+                    <div class="col-sm-9 col-md-10">
+                        <span data-ng-disabled="vm.uploader.queue.length > 0" class="btn btn-file btn-default btn-sm">Choose File <i class="fa fa-search"></i>
+                            <input type="file" data-ng-disabled="vm.uploader.queue.length > 0" nv-file-select=""  accept="image/jpeg" uploader="vm.uploader">
+                        </span>
+                        <br/>
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="item in vm.uploader.queue">
+                                <span ng-bind="item.file.name"></span>
+                                <button class="btn btn-xs btn-danger" data-ng-click="item.remove()"><i class="fa fa-close"></i>&nbsp;Remove</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-md-offset-2 col-sm-9 col-md-offset-10">
+                    <div re-captcha data-ng-model="vm.data.captcha"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-md-offset-2 col-sm-9 col-md-10">
+                        <button type="reset" class="btn btn-warning"  data-ng-click="productForm.$setPristine(); vm.clearForm()">
+                            <i class="fa fa-refresh"></i>&nbsp;Reset</button>
+                        <button type="button" class="btn btn-primary" data-ng-disabled="productForm.$invalid" data-ng-click="vm.saveProduct(productForm)">
+                            <i class="fa fa-save"></i>&nbsp;Save</button>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+</section>
